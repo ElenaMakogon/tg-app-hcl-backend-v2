@@ -69,6 +69,11 @@ async def startup_event():
 # Глобальная переменная для хранения структуры таблицы
 table_structure = {}
 
+@app.get("/")
+async def root():
+    return {"message": "Привет"}
+
+
 @app.get("/api/wallet/{tg_id}") # первая страница, отображает портфель покупки
 async def user_wallet(tg_id: str):
     user_id = await rq.get_user(tg_id)

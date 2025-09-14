@@ -27,8 +27,6 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "https://tg-app-hcl.web.app",  # Ваш Firebase Hosting URL
-        "http://localhost:5173",# Для разработки
-        "http://127.0.0.1:8000",# Для разработки
         "http://www.cbr.ru"
     ],
     allow_methods=["GET", "POST", "PUT", "DELETE"],

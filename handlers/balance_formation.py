@@ -135,9 +135,9 @@ class GoogleSheetsBalanceUpdater:
         # Определяем позицию для вставки (после первой валюты для сохранения форматированияи )
         try:
             insert_col = self.instance_header_col + 2
-            print(f"Добавляет новую валюту после колонки 'Инстанс' колонка {insert_col}")
+
             # Вставляем новую колонку
-            #await self.worksheet.insert_cols([[]], 3)
+
             await self.worksheet.insert_cols([[]], insert_col) # self.insert_col
             # Устанавливаем заголовок во второй строке
             await self.worksheet.update('D3', [[currency]])  # C - третья колонка

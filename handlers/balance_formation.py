@@ -138,7 +138,7 @@ class GoogleSheetsBalanceUpdater:
 
             # Вставляем новую колонку
 
-            await self.worksheet.insert_cols([[]], insert_col) # self.insert_col
+            await self.worksheet.insert_cols([[]], insert_col, value_input_option='USER_ENTERED') # self.insert_col
             # Устанавливаем заголовок во второй строке
             await self.worksheet.update('D3', [[currency]])  # C - третья колонка
 

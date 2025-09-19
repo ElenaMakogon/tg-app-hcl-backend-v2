@@ -141,10 +141,13 @@ class GoogleSheetsBalanceUpdater:
             await self.worksheet.insert_cols([[]], insert_col, value_input_option='USER_ENTERED') # self.insert_col
             # Устанавливаем заголовок во второй строке
             await self.worksheet.update('D3', [[currency]])  # C - третья колонка
+            column_range = f"{'D'}:{'D'}" # устанавливаем пользовательский формат для всей колонки, иначе устанавливает
+            # таблица, без разделения на тысячи
 
             # Устанавливаем кастомный числовой формат
-            await self.worksheet.format('D3', {
+            await self.worksheet.format(column_range, {
                 "numberFormat": {
+                    "type": "NUMBER",
                     "pattern": "# ##0,00"  # Кастомный формат с пробелами
                 }
             })

@@ -191,7 +191,7 @@ class GoogleSheetsBalanceUpdater:
 
         # Обновляем итоги
         await self._update_totals(currency_col)
-        return f"✅ Обновлен баланс 'Balances'\n {transaction['Инстанс']}: {current_value} → {new_value} {transaction['Валюта']}"
+        return f"✅ Обновлен баланс 'Balances'\n {transaction['Инстанс']}: {current_value} → {formatted_new_value} {transaction['Валюта']}"
 
 
     async def _update_totals(self, currency_col: str) -> str:

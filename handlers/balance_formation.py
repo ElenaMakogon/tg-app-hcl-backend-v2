@@ -141,6 +141,14 @@ class GoogleSheetsBalanceUpdater:
             await self.worksheet.insert_cols([[]], insert_col) # self.insert_col
             # Устанавливаем заголовок во второй строке
             await self.worksheet.update('D3', [[currency]])  # C - третья колонка
+
+            # Устанавливаем кастомный числовой формат
+            await self.worksheet.format('D3', {
+                "numberFormat": {
+                    "pattern": "# ##0,00"  # Кастомный формат с пробелами
+                }
+            })
+
             return print(f"✅ Добавлена новая колонка валюты  {currency} ")
         except Exception as e:
             return f"❌ Ошибка добавления колонки: {str(e)}"
@@ -175,17 +183,14 @@ class GoogleSheetsBalanceUpdater:
         cell_ref = f'{currency_col}{row_num}'
         cell = await self.worksheet.acell(cell_ref)
         current_value = await self._reFormatting(cell.value.strip() if cell.value else "0")
+
         print(f" работает  _update_existing_balance, current_value после ._reFormatting = {current_value}")
-        #current_value.replace(" ", "").replace(" ", "").replace(",", ".")
 
-        current_num = float(current_value)  #  current_value.replace(',', '')) if current_value else 0
-
+        current_num = float(current_value)
         sum_value = await self._reFormatting(transaction['Сумма'].strip() if transaction['Сумма'] else "0")
-        #sum_value.replace(" ", "").replace(r"\xa", "").replace(",", ".")
-        sum_num = float(sum_value) # transaction['Сумма'].replace(',', '')) if transaction['Сумма'] else 0
+        sum_num = float(sum_value)
         new_value = current_num + sum_num
         formatted_new_value = "{:,.2f}".format(new_value).replace(","," ").replace(".",",")
-        #new_value_str = str(formatted_new_value)
 
         await self.worksheet.update_acell(cell_ref, formatted_new_value)
 

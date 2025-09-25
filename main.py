@@ -14,6 +14,8 @@ from handlers import requests as rq
 from handlers.work_with_GoogleTable import GoogleSheetsService
 from handlers.balance_formation import GoogleSheetsBalanceUpdater
 
+######### проверка обновления
+
 
 @asynccontextmanager
 async def lifespan(app_: FastAPI):

@@ -15,6 +15,7 @@ from handlers.work_with_GoogleTable import GoogleSheetsService
 from handlers.balance_formation import GoogleSheetsBalanceUpdater
 
 ######### проверка обновления
+######### проверка обновления
 
 
 @asynccontextmanager
